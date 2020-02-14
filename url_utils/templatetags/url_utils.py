@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # (c) 2013 Bright Interactive Limited. All rights reserved.
 # http://www.bright-interactive.com | info@bright-interactive.com
-from urlparse import urlparse, urlunparse
+from urllib.parse import urlparse, urlunparse
 from django import template
 
 register = template.Library()
@@ -20,7 +20,7 @@ def current_url_with_params(context, **kwargs):
 
     query = request.GET.copy()
 
-    for (name, value) in kwargs.items():
+    for (name, value) in list(kwargs.items()):
         query[name] = value
 
     query_part_index = 4
